@@ -1,0 +1,8 @@
+python -m venv mysite(가상환경 생성) -> activate, deactivate
+django-admin startproject config .
+django-admin startapp pybo
+django-admin createsuperuser admin	
+python manage.py makemigrations (db 모델 변경사항 등록)
+python manage.py migrate (db 모델 실제 적용)
+python manage.py runserver (서버시작)
+python manage.py shell(쉘 시작)
