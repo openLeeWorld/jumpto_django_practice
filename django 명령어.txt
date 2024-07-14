@@ -45,3 +45,11 @@ DB_USER = dbmasteruser
 DB_HOST = <엔드포인트>
 DB_PASSWORD = <암호>
 7. migrate로 SQLite에서 Postgresql로 옮김, createsuperuser 다시 생성
+
+cf) python 가상환경 바로 실행하기 
+mysite.cmd 생성 ->
+@echo off
+cd C:\python_django_practice\projects\mysite
+set DJANGO_SETTINGS_MODULE=config.settings.local
+C:\python_django_practice\mysite\Scripts/activate
+-> 환경변수 경로에 mysite.cmd경로 추가, mysite입력으로 바로 시작
