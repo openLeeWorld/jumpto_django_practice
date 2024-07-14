@@ -6,3 +6,16 @@ python manage.py makemigrations (db 모델 변경사항 등록)
 python manage.py migrate (db 모델 실제 적용)
 python manage.py runserver (서버시작)
 python manage.py shell(쉘 시작)
+python mange.py collectstatic(관리자 앱의 정적파일 복사)
+ㄴ mysite(가상환경 경로)\Lib\site-packages\django\contrib\admin\static\admin 에 /admin 정적파일이 있으므로 옮겨줌
+
+변경된 프로그램 서버에 적용하기
+로컬 -----------------------------
+1. git add *
+2. git commit -m "수정 내용 커멘트"
+3. git push (origin main)
+
+서버 -----------------------------
+1. git pull (서버는 파일 변경 금지, 충돌남)
+2. sudo systemctl restart mysite.service (gunicorn 재시작)
+
