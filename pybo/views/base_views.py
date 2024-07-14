@@ -4,8 +4,13 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q # 검색 함수
 from ..models import Question
 
+import logging
+logger = logging.getLogger('pybo') 
+# pybo는 로거명 설정(base.py에 설정)
 
 def index(request):
+    logger.info("INFO 레벨로 출력")
+    
     page = request.GET.get('page', 1) 
     kw = request.GET.get('kw', '') # 검색어
     question_list = Question.objects.order_by('-create_date')

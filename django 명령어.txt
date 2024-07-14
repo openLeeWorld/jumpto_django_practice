@@ -26,4 +26,6 @@ gunicorn(WSGI)는 포트보다는 유닉스 소켓을 사용하는 것이 좋고
 장고 로그 레벨: DEBUG < INFO < WARNING < ERROR < CRITICAL
 운영 서버 로그 방법)
 1. 관리자 이메일로 오류 내용 발송(관리자 이메일, smtp 설정)
-2. 특정 파일에 오류 출력
+2. 특정 파일에 오류 출력 -> 로그 정리 방법: RotateFileHandler 
+
+로그 확인: tail -f logs/mysite.log
