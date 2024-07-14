@@ -129,3 +129,66 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #로그인 성공 후 이동하는 URL
 LOGIN_REDIRECT_URL = '/'
+
+# 로깅설정
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[{server_time}] {message}',
+            'style': '{',
+        },
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        }, # 현재 시간, 로그 레벨, 로거명, 출력 내용
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'file': { # 외부 파일에 출력
+            'level': 'INFO',
+            'filters': ['require_debug_false'], # 운영 환경 사용
+            'class': 'logging.handlers.RotatingFileHandler', 
+            # 파일 크기가 일정 이상 커지면 파일 뒤에 인덱스를 붙여서 백업
+            'filename': BASE_DIR / 'logs/mysite.log', # 로그 파일명
+            'maxBytes': 1024*1024*5,  # 5 MB
+            'backupCount': 5, # 롤링되는 파일 개수 최대 5개
+            'formatter': 'standard', # 위에서 정의한 standard 형식
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'mail_admins', 'file'], # 핸들러 등록
+            'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['django.server'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
+}
+

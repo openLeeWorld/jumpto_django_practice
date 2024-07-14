@@ -23,3 +23,5 @@ def signup(request):
 
 def page_not_found(request, exception): # exception은 오류의 내용을 담음
     return render(request, 'common/404.html', {})
+# DEBUG=TRUE인 개발 환경에서는 장고의 기본 404가 적용되므로 
+# 사용자 404페이지는 운영환경에서만 보인다.
