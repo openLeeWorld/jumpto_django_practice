@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0b60_=bh^=t@ulp!#jcgssyvxi#292%#c+$+medep67129v=62
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.125.35.45'] # 장고 서버가 실행 가능한 호스트를 설정하는 항목
 
 
 # Application definition
