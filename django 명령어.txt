@@ -29,3 +29,19 @@ gunicorn(WSGI)는 포트보다는 유닉스 소켓을 사용하는 것이 좋고
 2. 특정 파일에 오류 출력 -> 로그 정리 방법: RotateFileHandler 
 
 로그 확인: tail -f logs/mysite.log
+
+도메인 등록 방법: amazon 53, gabia 등 (유료)
+ㄴ nginx의 /etc/nginx/site-available/mysite의 server_name <domain>; 설정 (실제 적용은 /etc/nginx/site-enabled/mysite, sudo ln -f 로 심볼릭 연결 가능)
+
+postgresql 연결 방법: 
+1. aws lightsail db 생성 (사용자 이름, 암호, 엔드포인트 확인)
+2. 서버: sudo apt install postgresql-client
+3. createdb pybo --username=dbmasteruser -h <데이터베이스 주소 or 엔드포인트> -> 암호 입력
+4. 장고에서 postgresql 서버 접속: pip install psycopg2-binary (postgresql connector for postgresql, version2)
+5. (로컬, 서버) 환경변수파일: pip install django-environ
+6. .env: (보안상 서버에 직접 접속 후 설정)
+DB_NAME = pybo 
+DB_USER = dbmasteruser
+DB_HOST = <엔드포인트>
+DB_PASSWORD = <암호>
+7. migrate로 SQLite에서 Postgresql로 옮김, createsuperuser 다시 생성
